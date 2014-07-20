@@ -121,7 +121,7 @@ axis(1, at=seq(0,2400,400),
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6.png) 
 
 
-The maximum (average) number of steps can be calculated, and the matching interval can be found easily as well. The result matches the highest peak in the previous plot: the average number of steps is about 206 in the 5 minute interval from 8:35
+The maximum (average) number of steps can be calculated, and the matching interval can be found easily as well. The result matches the highest peak in the previous plot: the average number of steps is about 206 in the 5 minute interval from 8:35.
 
 
 
@@ -167,7 +167,7 @@ plot(missingdates, main="Missing steps values by date",
 
 ![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9.png) 
 
-The missing values can be replaced with the average for that interval over the original two months data, as calculated earlier in the variable *avgday*. (*nas* gives the indices of the data frame where the steps are missing, and the *match()* function translates every index into a index into the *avgday* results.)
+The missing values can be replaced with the average for that interval over the original two months data (calculated over days the data is not missing), as calculated earlier in the variable *avgday*. (*nas* gives the indices of the data frame where the steps are missing, and the *match()* function translates every index into a index into the *avgday* results.)
 
 
 ```r
