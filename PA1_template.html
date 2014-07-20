@@ -196,9 +196,10 @@ hr {
 
 <h2>Loading and preprocessing the data</h2>
 
-<p>To load the raw data we use the function <em>read.csv()</em>. This assumes that the zip file has been unzipped and the csv file is available in the directory.</p>
+<p>To load the raw data we use the function <em>read.csv()</em>. Because the original data is in zip format, we unzip the file that is included in the github repository first.</p>
 
-<pre><code class="r">rawdata &lt;- read.csv(&quot;activity.csv&quot;) 
+<pre><code class="r">unzip(&quot;activity.zip&quot;)
+rawdata &lt;- read.csv(&quot;activity.csv&quot;) 
 summary(rawdata)
 </code></pre>
 

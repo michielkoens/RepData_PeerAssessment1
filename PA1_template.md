@@ -4,10 +4,11 @@ This document describes the analysis of a data set that contains movement data.
 
 ## Loading and preprocessing the data
 
-To load the raw data we use the function *read.csv()*. This assumes that the zip file has been unzipped and the csv file is available in the directory.
+To load the raw data we use the function *read.csv()*. Because the original data is in zip format, we unzip the file that is included in the github repository first.
 
 
 ```r
+unzip("activity.zip")
 rawdata <- read.csv("activity.csv") 
 summary(rawdata)
 ```
