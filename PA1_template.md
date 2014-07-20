@@ -117,7 +117,7 @@ axis(1, at=seq(0,2400,400), labels=c("0:00","4:00","8:00","12:00","16:00","20:00
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6.png) 
 
 
-The maximum (average) number of steps can be calculated, and the matching interval can be found easily as well. The result matches the highest peak in the previous plot: the average number of steps is about 206 in a 5 minute interval from 8:35
+The maximum (average) number of steps can be calculated, and the matching interval can be found easily as well. The result matches the highest peak in the previous plot: the average number of steps is about 206 in the 5 minute interval from 8:35
 
 
 
@@ -140,7 +140,7 @@ avgday$interval[match(maxsteps,avgday$avgsteps)]
 
 ## Imputing missing values
 
-We can calculate the number of missing values in the steps column of the raw data, and get the same result as using the *summary()* function.
+We can calculate the number of missing values in the steps column of the raw data, and get the same result as when using the *summary()* function.
 
 
 ```r
@@ -162,7 +162,7 @@ plot(missingdates, main="Missing steps values by date", xlab="Date", ylab="Numbe
 
 ![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9.png) 
 
-However, the missing values can be replaced with the average for that interval over the original two months data, as calculated earlier in the variable *avgday*. (*nas* gives the indices of the data frame where the steps are missing, and the *match()* function translates every index into a index into the *avgday* results.)
+The missing values can be replaced with the average for that interval over the original two months data, as calculated earlier in the variable *avgday*. (*nas* gives the indices of the data frame where the steps are missing, and the *match()* function translates every index into a index into the *avgday* results.)
 
 
 ```r
@@ -210,7 +210,7 @@ median(stepsperday)
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
-Based on the date we can find the day of the week for each sample, so we can split the data into weekend and weekday samples. With this extra information we can again calculate the average number of steps per interval, and distinguish averages by weekday and weekend.
+Based on the date we can find the day of the week for each sample, so we can split the data into weekend and weekday samples. With this extra information we can again calculate the average number of steps per interval, and additionally distinguish averages by weekday and weekend.
 
 
 ```r
