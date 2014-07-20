@@ -60,12 +60,13 @@ With the information about minimum and maximum values, we can define the buckets
 
 
 ```r
-hist(stepsperday, breaks=seq(0,22000,2000), main="Average steps per day",xlab="Steps")
+hist(stepsperday, breaks=seq(0,22000,2000), 
+     main="Total steps per day",xlab="Steps")
 ```
 
 ![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
 
-The mean and median steps per day can be calculated and visually verified in the histogram.
+The mean and median total steps per day can be calculated and visually verified in the histogram.
 
 
 ```r
@@ -109,9 +110,12 @@ Plotting the data is straightforward, but we replace the X axis labels with stri
 
 
 ```r
-plot(avgday$interval, avgday$avgsteps, type="l", main="Average number of steps in 5 minute interval", xlab="Interval start time", ylab="Steps", axes = FALSE)
+plot(avgday$interval, avgday$avgsteps, type="l", 
+     main="Average number of steps in 5 minute interval", 
+     xlab="Interval start time", ylab="Steps", axes = FALSE)
 axis(2)
-axis(1, at=seq(0,2400,400), labels=c("0:00","4:00","8:00","12:00","16:00","20:00","0:00"))
+axis(1, at=seq(0,2400,400), 
+     labels=c("0:00","4:00","8:00","12:00","16:00","20:00","0:00"))
 ```
 
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6.png) 
@@ -157,7 +161,8 @@ Plotting the missing data by date reveals that certain dates are fully missing, 
 
 ```r
 missingdates <- rawdata$date[nas]
-plot(missingdates, main="Missing steps values by date", xlab="Date", ylab="Number of missing values")
+plot(missingdates, main="Missing steps values by date", 
+     xlab="Date", ylab="Number of missing values")
 ```
 
 ![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9.png) 
@@ -167,7 +172,8 @@ The missing values can be replaced with the average for that interval over the o
 
 ```r
 fixeddata <- rawdata
-fixeddata$steps[nas] <- avgday$avgsteps[match(fixeddata$interval[nas],avgday$interval)]
+fixeddata$steps[nas] <- 
+    avgday$avgsteps[match(fixeddata$interval[nas],avgday$interval)]
 summary(fixeddata)
 ```
 
@@ -187,7 +193,8 @@ Now we can recalculate the average total steps per day, and the median and avera
 
 ```r
 stepsperday <- tapply(fixeddata$steps, fixeddata$date, sum)
-hist(stepsperday, breaks=seq(0,22000,2000), main="Average steps per day, with missing values imputed",xlab="Steps")
+hist(stepsperday, breaks=seq(0,22000,2000), 
+     main="Average steps per day, with missing values imputed",xlab="Steps")
 ```
 
 ![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11.png) 
@@ -214,9 +221,10 @@ Based on the date we can find the day of the week for each sample, so we can spl
 
 
 ```r
-isweekend <- function(s) {weekdays(as.Date(s, "%Y-%m-%d")) %in% c("Saturday","Sunday")}
+isweekend <- function(s) {
+    weekdays(as.Date(s, "%Y-%m-%d")) %in% c("Saturday","Sunday")}
 fixeddata$weekend <- ifelse(isweekend(fixeddata$date),"Weekend","Weekday")
-avgday_weekend <- aggregate(steps ~ interval + weekend, data=fixeddata, FUN=mean)
+avgday_weekend <- aggregate(steps ~ interval+weekend, data=fixeddata, FUN=mean)
 ```
 
 
@@ -226,7 +234,11 @@ Using the lattice library, we can plot the results like earlier, but now split b
 
 ```r
 library(lattice)
-xyplot(steps ~ interval|weekend, data=avgday_weekend, type="l", layout=c(1,2), main="Average number of steps in 5 minute interval", xlab="Interval start time", ylab="Steps", scales=list(x=list(at=seq(0,2400,400), labels=c("0:00","4:00","8:00","12:00","16:00","20:00","0:00"))))
+xyplot(steps ~ interval|weekend, data=avgday_weekend, type="l", layout=c(1,2), 
+       main="Average number of steps in 5 minute interval", 
+       xlab="Interval start time", ylab="Steps", 
+       scales=list(x=list(at=seq(0,2400,400), 
+                          labels=c("0:00","4:00","8:00","12:00","16:00","20:00","0:00"))))
 ```
 
 ![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13.png) 
