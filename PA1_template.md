@@ -189,7 +189,7 @@ summary(fixeddata)
 ##                  (Other)   :15840
 ```
 
-Now we can recalculate the average total steps per day, and the median and average over the 2 months period. The results are not very different from the original results. It seems that the missing values are not concentrated in days with a high or low number of steps.
+Now we can recalculate the average total steps per day, and the median and average over the 2 months period. The average is the same, because whole days were missing and the missing values have been filled with averages of non-missing data. The median moved slightly and now matches the average; the days with missing data were filled with average values adding weight to the average in the calculation of the median.
 
 
 ```r
